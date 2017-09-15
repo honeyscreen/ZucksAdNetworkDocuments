@@ -103,7 +103,7 @@ JSON 문자열을 반환합니다. 문자 코드는 UTF-8입니다.
 * `status` : String
   * `no_ad`
 * `no_ad_url` : String
-  * 광고 소진 측정 용 end point
+  * 광고 소진 측정 용 end point
 
 광고가 존재하지 않는 경우에도 HTTP 상태 코드 200로 반환합니다
 
