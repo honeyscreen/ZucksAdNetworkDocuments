@@ -203,7 +203,7 @@ Zucks Ad Network는 신호를 통해 노출을 계산합니다.
 각 광고를 렌더링 한 직후`imp_url`의 URL에 GET 요청을 보내 주시기 바랍니다.
 
 * End point
-  * `imp_url` 의URL
+  * `imp_url` 의URL
 * Method
   * GET
 * 브라우저 / WebView 내에서 XMLHttpRequest를 사용하여 요청을 보내는 경우
