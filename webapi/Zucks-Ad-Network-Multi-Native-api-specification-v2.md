@@ -1,6 +1,7 @@
 # Zucks Ad Network Multi Native Ad API v2.0 Specification
 
-여러개의 광고를 리턴해주는 광고 API 스펙은 다음을 참조해주세요.  - 이하 `Sophia` 번역 > 이상한 부분은 꼭 재확인 요청 주세요 
+여러 개의 광고를 리턴해주는 광고 API 스펙은 다음을 참조해주세요.  
+- 이하 `Sophia` 번역 > 이상한 부분은 꼭 재확인 요청 주세요 
 
 
 ## Request
@@ -14,7 +15,7 @@
 
 * `User-Agent` : Required.
   * 광고를 표시하는 단말기의 기본 브라우저와 동등한 ua 를  Header  ua 파라미터를 통해 꼭 보내주세요
-  * 뒷 부분에 추가적인 정보가 들어가는 경우에도 형식에 문제가 없습니다. 
+  * 뒷 부분에 추가적인 정보가 들어가는 경우에도 (파라미터 ua  를 추가로 보내는 경우에도) 형식에 문제가 없습니다. 
   * 파라미터에 ua 를 전송하는 경우, 파라미터로 보낸 ua 가 헤더에 우선하여 처리됩니다. 
   
   
@@ -29,10 +30,12 @@
 ### Request Parameters
 
 * `frameid` : Required.
-  * 광고 프레임마다 발행되는 Frame ID  ```HoneyScreen_Female, Male 각각 발급된  frame ID 는 트렐로 카드에 업로드 되어있습니다.``` 
+  * 광고 프레임마다 발행되는 Frame ID 
+    * ```HoneyScreen_Female, Male 각각 발급된  frame ID 는 트렐로 카드에 업로드 되어있습니다.``` 
   * (Zucks Ad Network 관리 화면의 미디어 / 광고 공사 관리 페이지에서 확인하시기 바랍니다)
 * `num` : Required.
-  * 요청할 광고의 갯수입니다. 1-5사이 숫자를 입력  ```저희는 기존에 진행하던 대로 총 3개의 라인아이템을 만들었으면 합니다 ```
+  * 요청할 광고의 갯수입니다. 1-5사이 숫자를 입력  
+    * ```저희는 기존에 진행하던 대로 총 3개의 라인아이템을 만들었으면 합니다 ```
   * 요청한 수 만큼의 광고가 없을 경우, 존재하는 광고 수 만큼을 반환합니다. 
 * `ida` : Optional.
   * IDFA(iOS) or Advertising ID(Android)
@@ -93,8 +96,8 @@ JSON 문자열을 반환합니다. 문자 코드는 UTF-8입니다.
     * 광고주 이름
     * 전각 1 ~ 18 자 (영문 1 ~ 36 문자) 문자열
   * `link_button_text` : String
-    * 링크 버튼 설치시 텍스트
-    * 전각 0-7 문자 (0 ~ 14 문자) 문자열
+    * 콜투액션 
+    * 전각 0-7 문자 (0 ~ 14 문자) 문자열
   * `landing_url` : String
     * 광고 클릭시 랜딩 할 URL
 
@@ -209,12 +212,12 @@ Zucks Ad Network는 신호를 통해 노출을 계산합니다.
 * 브라우저 / WebView 내에서 XMLHttpRequest를 사용하여 요청을 보내는 경우
   * `withCredentials` 속성을`true`로 요청하십시오
 
-또한 광고 안건이 존재하지 않는 경우는`no_ad_url` 비슷한 요청을 제출함으로써 "전달하는 광고 안건이 존재하지 않았다"으로 계산합니다.
+또한 광고가 존재하지 않는 경우는 `no_ad_url` url 을 호출함으로써 "전달해준 광고가 존재하지 않았다"으로 계산합니다.
 
 
 ## Firing Clicks
 
-광고 탭시`landing_url` URL을 기본 브라우저로 열어 봅니다
+광고 클릭시`landing_url` URL을 기본 브라우저로 오픈합니다. 
 
 
 ## Check List
@@ -233,21 +236,21 @@ Zucks Ad Network는 신호를 통해 노출을 계산합니다.
 
 일반적인 문제에 대한 확인 사항입니다
 
-### no_ad 만 반환되고, 광고 리턴이 없습니다. 
+### no_ad 만 반환되고, 광고 리턴이 없다면 
 
 - [ ] Request Parameter의`frameid` 값이 정확합니까?
 - [ ] Request Header의`User-Agent` 값 또는 Request Parameter의`ua` 값은 광고를 표시하는 단말기의 기본 브라우저에 준한 가치인가?
 
 해당 프레임에 대한 광고 재고가없는 경우도 있습니다. 자세한 내용은 문의 바랍니다
 
-### 노출이 대시보드에 잡히지 않습니다.
+### 노출이 대시보드에 잡히지 않는다면
 
 - [ ] Request Parameter의`frameid` 값이 정확합니까?
 - [ ] `imp_url` 값의 URL에 요청을 발행하고 있습니까?
 - [ ] 는 약간의 지연 시간이 있을 수 있습니다. 충분한 시간을 기다린 후 확인하세요.
 
 
-### 클릭이 잡히지 않습니다.
+### 클릭이 잡히지 않는다면
 
 - [ ] `landing_url` 값의 URL에 요청을 제대로 보내고 있나요 ?
 - [ ] 그 응답이 `302 Moved Temporarily`입니까?
