@@ -29,8 +29,8 @@
 ### Request Parameters
 
 * `frameid` : Required.
-  * 광고 프레임마다 발행되는 Frame ID  ```HoneyScreen_Female, Male 각각 발급된  frame ID 는 트렐로 카드에 업로드 되어있습니다.``` 
-  * (Zucks Ad Network 관리 화면의 미디어 / 광고 공사 관리 페이지에서 확인하시기 바랍니다)
+  * 광고 프레임마다 발행되는 Frame ID  ```HoneyScreen_Female, Male 각각 발급된  frame ID 는 트렐로 카드에 업로드 되어있습니다.``` 
+  * (Zucks Ad Network 관리 화면의 미디어 / 광고 공사 관리 페이지에서 확인하시기 바랍니다)
 * `num` : Required.
   * 요청할 광고의 갯수입니다. 1-5사이 숫자를 입력  ```저희는 기존에 진행하던 대로 총 3개의 라인아이템을 만들었으면 합니다 ```
   * 요청한 수 만큼의 광고가 없을 경우, 존재하는 광고 수 만큼을 반환합니다. 
@@ -75,45 +75,45 @@ JSON 문자열을 반환합니다. 문자 코드는 UTF-8입니다.
     * 임프레션 트래킹 URL
   * `image_src` : String
     * 광고 이미지 URL 
-    * 광고 이미지의 비율을 유지하여 노출해야하며, 좌우 비율을 바꿔서는 안됩니다. 
+    * 광고 이미지의 비율을 유지하여 노출해야함. 
   * `width` : String
     * 광고이미지폭
   * `height` : String
     * 광고이미지높이
   * `title` : String
     * 광고제목
-    * 全角1～18文字（半角1～36文字）の文字列
+    * 전각 1 ~ 18 자 (영문 1 ~ 36 문자) 문자열
   * `body_text` : String
-    * 広告の本文
-    * 全角1～44文字（半角1～88文字）の文字列
+    * 광고 본문 
+    * 전각 1 ~ 44 자 (영문 1 ~ 88 문자) 문자열
   * `product_name` : String
-    * サービス・商品名
-    * 全角1～18文字（半角1～36文字）の文字列
+    * 서비스 상품명
+    * 전각 1 ~ 18 자 (영문 1 ~ 36 문자) 문자열
   * `advertiser_name` : String
-    * 広告主名
-    * 全角1～18文字（半角1～36文字）の文字列
+    * 광고주 이름
+    * 전각 1 ~ 18 자 (영문 1 ~ 36 문자) 문자열
   * `link_button_text` : String
-    * リンクボタン設置時のテキスト
-    * 全角0～7文字（半角0～14文字）の文字列
+    * 링크 버튼 설치시 텍스트
+    * 전각 0-7 문자 (0 ~ 14 문자) 문자열
   * `landing_url` : String
-    * 広告タップ時の遷移先URL
+    * 광고 클릭시 랜딩 할 URL
 
-#### 広告案件が存在しない場合
+#### 광고 리턴이 없는 경우
 
 * `status` : String
   * `no_ad`
 * `no_ad_url` : String
-  * 広告在庫切れ計測用エンドポイント
+  * 광고 소진 측정 용 end point
 
-広告案件が存在しない場合でも、HTTPステータスコードは200で返却します。
+광고가 존재하지 않는 경우에도 HTTP 상태 코드 200로 반환합니다
 
-`no_ad_url` 値を後述 Firing Impressions に従って処理することで、「配信する広告案件が存在しなかった」数としてカウントします。
+`no_ad_url` 값을 아래 Firing Impressions 따라 처리함으로써 "전달하는 광고가 존재하지 않았다"고 계산합니다.
 
-### その他
+### 기타
 
-レスポンス内容はキャッシュせずに、広告表示のタイミングで毎回APIを叩いて習得した結果を利用してください。
+응답 내용은 캐시하지 않고 광고 표시의 타이밍에서 매번 API를 호출하여 수신 한 결과를 이용하십시오. `아라타가 별도로 캐싱 허용 받음`
 
-キャッシュした内容で広告表示を行うと正しく広告が表示されていないと判断され、インプレッション、クリックが正しくカウントされない場合があります。
+캐시 된 내용으로 광고 표시를하면 제대로 광고가 표시되어 있지 않다고 판단되며, 노출, 클릭이 제대로 계산되지 않을 수 있습니다.
 
 
 ## Example
@@ -126,7 +126,7 @@ https://sh.zucks.net/opt/native/api/v2m?frameid=_xxxxxxxxxx&num=2&ida=xxxx-xxxx-
 
 ### Response
 
-#### 広告案件が存在する場合
+#### 광고가 존재하는 경우
 
 ```json
 {
@@ -162,7 +162,7 @@ https://sh.zucks.net/opt/native/api/v2m?frameid=_xxxxxxxxxx&num=2&ida=xxxx-xxxx-
 }
 ```
 
-#### 広告案件が存在しない場合
+#### 광고가 존재하지 않는 경우
 
 ```json
 {
@@ -174,83 +174,82 @@ https://sh.zucks.net/opt/native/api/v2m?frameid=_xxxxxxxxxx&num=2&ida=xxxx-xxxx-
 
 ## Rendering the Ads
 
-`image_src` は、png/jpg/gif(アニメーション含む)などの画像ファイルを示すURLです。  
-このURLから画像を取得し、縦横比を保った状態で表示してください。  
-`image_src` の画像ファイルの内容は不変です。必要に応じてキャッシュして利用することができます。
+`image_src` 는 png / jpg / gif (애니메이션 포함) 등의 이미지 파일의 URL입니다.이 URL에서 이미지를 가져 종횡비를 유지 한 상태로 표시합니다.
+`image_src` 이미지 파일의 내용은 변경할 수 없습니다. 필요에 따라 캐시하여 이용할 수 있습니다.
 
-`link_button_text` はリンクボタン設置時に利用することができるテキストです。  
-広告によっては空文字の場合があります。
+`link_button_text` 링크 버튼 설치시 사용할 수있는 텍스트입니다.
+광고에 따라 빈 경우가 있습니다
+광고 표시시에는 광고임을 명시 스폰서 라벨 (`Sponsored``AD``광고`등)을 반드시 표시하십시오.
 
-広告表示時には広告であることを明記するスポンサーラベル（`Sponsored`、`AD`、`広告`など）を必ず表示してください。
-
-広告在庫状況によって、要求数分の広告が返却されない場合があります。
+광고 상황에 따라 광고가 선택적으로 반환되지 않을 수 있습니다.
 
 ### Rendering Sample
 
-1. 広告画像（`image_src`）
-2. タイトル（`title`）
-3. 広告の本文（`body_text`）
-4. サービス・商品名（`product_name`）
-5. 広告主名（`advertiser_name`）
-6. リンクボタン設置時のテキスト（`link_button_text`）
-7. スポンサーラベル
+1. 광고 이미지（`image_src`）
+2. 제목（`title`）
+3. 본문（`body_text`）
+4. 상품명（`product_name`）
+5. 광고주면（`advertiser_name`）
+6. call to action（`link_button_text`）
+7. 스폰서 라벨
 
-![ネイティブ広告表示例](images/native_ad_sample.png)
+![네이티브 광고 표시 샘플](images/native_ad_sample.png)
 
 
 ## Firing Impressions
 
-Zucks Ad Networkでは、ビーコン送信によりインプレッションをカウントしています。
+Zucks Ad Network는 신호를 통해 노출을 계산합니다. 
 
-各広告をレンダリングした直後、 `imp_url` のURLにGETリクエストを送信してください。
+각 광고를 렌더링 한 직후`imp_url`의 URL에 GET 요청을 보내 주시기 바랍니다.
 
 * End point
-  * `imp_url` のURL
+  * `imp_url` 의URL
 * Method
   * GET
-* ブラウザ/WebView内からの XMLHttpRequest を使ってリクエストを送る場合
-  * `withCredentials` 属性を `true` にてリクエストしてください
+* 브라우저 / WebView 내에서 XMLHttpRequest를 사용하여 요청을 보내는 경우
+  * `withCredentials` 속성을`true`로 요청하십시오
 
-また、広告案件が存在しない場合は `no_ad_url` に同様のリクエストを送信することで、「配信する広告案件が存在しなかった」数としてカウントします。
+또한 광고 안건이 존재하지 않는 경우는`no_ad_url` 비슷한 요청을 제출함으로써 "전달하는 광고 안건이 존재하지 않았다"으로 계산합니다.
 
 
 ## Firing Clicks
 
-広告タップ時、`landing_url` のURLをデフォルトブラウザで開いてください
+광고 탭시`landing_url` URL을 기본 브라우저로 열어 봅니다
 
 
 ## Check List
 
-ご利用開始までに確認すべきチェック項目です
+실 유저 오픈까지 확인해야 할 체크 항목입니다
 
-**広告収益の算出ができない場合がありますので、必ず確認してください**
+** 광고 수익이 잡히지 않는 경우가 있으므로 반드시 확인하십시오 **
 
-- [ ] ネイティブ広告が表示された
-- [ ] Zucks Ad Network管理画面で、インプレッション数が増えた
-- [ ] クリック後、デフォルトブラウザでランディングページが表示された
-- [ ] Zucks Ad Network管理画面で、クリック数が増えた
+- [ ] 광고가 실제로 잘 표시되었는지
+- [ ] Zucks Ad Network대시보드에서 임프레션이 잘 잡히는지
+- [ ] 랜딩했을때 올바른 페이지로 랜딩 되는지 
+- [ ] Zucks Ad Network대시보드에서 클릭이 잘 잡히는지
 
 
 ## Trouble Shooting
 
-よくあるトラブルに対する確認項目です
+일반적인 문제에 대한 확인 사항입니다
 
-### no_ad しか返却されません
+### no_ad 만 반환되고, 광고 리턴이 없습니다. 
 
-- [ ] Request Parameterの `frameid` 値は正しいですか？
-- [ ] Request Headerの `User-Agent` 値またはRequest Parameterの `ua` 値は、広告を表示する端末のデフォルトブラウザに準じた値ですか？
+- [ ] Request Parameter의`frameid` 값이 정확합니까?
+- [ ] Request Header의`User-Agent` 값 또는 Request Parameter의`ua` 값은 광고를 표시하는 단말기의 기본 브라우저에 준한 가치인가?
 
-該当枠に対する広告在庫がない場合もございます。詳しくはお問い合わせください。
+해당 프레임에 대한 광고 재고가없는 경우도 있습니다. 자세한 내용은 문의 바랍니다
 
-### インプレッションがカウントされません
+### 노출이 대시보드에 잡히지 않습니다.
 
-- [ ] Request Parameterの `frameid` 値は正しいですか？
-- [ ] `imp_url` 値のURLにリクエストを発行していますか？
-- [ ] 管理画面上のレポーティングには多少のタイムラグがあります。しばらく時間をおいて確認してみてください。
+- [ ] Request Parameter의`frameid` 값이 정확합니까?
+- [ ] `imp_url` 값의 URL에 요청을 발행하고 있습니까?
+- [ ] 는 약간의 지연 시간이 있을 수 있습니다. 충분한 시간을 기다린 후 확인하세요.
 
-### クリックがカウントされません
 
-- [ ] `landing_url` 値のURLにリクエストを発行していますか？
-- [ ] そのレスポンスは `302 Moved Temporarily` ですか？
-- [ ] 管理画面上のレポーティングには多少のタイムラグがあります。しばらく時間をおいて確認してみてください。
+### 클릭이 잡히지 않습니다.
+
+- [ ] `landing_url` 값의 URL에 요청을 제대로 보내고 있나요 ?
+- [ ] 그 응답이 `302 Moved Temporarily`입니까?
+- [ ] 대시보드는 지연이 있을 수 있으니, 시간을두고 확인해주세요.
 
