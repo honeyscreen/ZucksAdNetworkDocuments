@@ -13,9 +13,12 @@
 ### Request Headers
 
 * `User-Agent` : Required.
+
   * 광고를 표시하는 단말기의 기본 브라우저와 동등한 ua 를  Header  ua 파라미터를 통해 꼭 보내주세요
   * 뒷 부분에 추가적인 정보가 들어가는 경우에도 형식에 문제가 없습니다. 
   * 파라미터에 ua 를 전송하는 경우, 파라미터로 보낸 ua 가 헤더에 우선하여 처리됩니다. 
+  
+  
 * `Referer` : Optional.
   * Parameter ref가 설정되어있는 경우, Parameter 측의 설정이 우선됩니다
 * `Accept-Language` : Optional.
