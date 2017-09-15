@@ -1,6 +1,6 @@
 # Zucks Ad Network Multi Native Ad API v2.0 Specification
 
-ネイティブ広告を複数件返却するAPIの仕様書となります
+여러개의 광고를 리턴해주는 광고 API 스펙은 다음을 참조해주세요.  - 이하 Sophia 번역 > 이상한 부분은 꼭 재확인 요청 주세요 
 
 
 ## Request
@@ -13,56 +13,56 @@
 ### Request Headers
 
 * `User-Agent` : Required.
-  * 広告を表示する端末のデフォルトブラウザと同等のものをHeader、もしくは後述のParameter `ua` で必ず送信してください
-  * 末尾に独自の付加情報が追加されていても、許容されます
-  * Parameter `ua` が設定されている場合、Parameter側の設定が優先されます
+  * 광고를 표시하는 단말기의 기본 브라우저와 동등한 ua 를  Header  ua 파라미터를 통해 꼭 보내주세요
+  * 뒷 부분에 추가적인 정보가 들어가는 경우에도 형식에 문제가 없습니다. 
+  * 파라미터에 ua 를 전송하는 경우, 파라미터로 보낸 ua 가 헤더에 우선하여 처리됩니다. 
 * `Referer` : Optional.
-  * Parameter `ref` が設定されている場合、Parameter側の設定が優先されます
+  * Parameter ref가 설정되어있는 경우, Parameter 측의 설정이 우선됩니다
 * `Accept-Language` : Optional.
-  * Parameter `lang` が設定されている場合、Parameter側の設定が優先されます
+  * Parameter lang가 설정되어있는 경우, Parameter 측의 설정이 우선됩니다
 * `Origin` : Optional.
-  * `withCredentials` 属性を `true` にてリクエストする場合は設定してください
+  * withCredentials 속성을 true로 요청하는 경우 설정하십시오
 * `Cookie` : Optional.
 
 ### Request Parameters
 
 * `frameid` : Required.
-  * 広告枠毎に発行されるFrame ID
-  * Zucks Ad Network管理画面のメディア/広告枠管理ページよりご確認ください
+  * 광고 프레임마다 발행되는 Frame ID  ```HoneyScreen_Female, Male 각각 발급된  frame ID 는 트렐로 카드에 업로드 되어있습니다.``` 
+  * (Zucks Ad Network 관리 화면의 미디어 / 광고 공사 관리 페이지에서 확인하시기 바랍니다)
 * `num` : Required.
-  * 広告要求数。1～5。
-  * 指定された要求数分広告案件が存在しない場合、存在する数だけ返却します
+  * 요청할 광고의 갯수입니다. 1-5사이 숫자를 입력  ```저희는 기존에 진행하던 대로 총 3개의 라인아이템을 만들었으면 합니다 ```
+  * 요청한 수 만큼의 광고가 없을 경우, 존재하는 광고 수 만큼을 반환합니다. 
 * `ida` : Optional.
   * IDFA(iOS) or Advertising ID(Android)
-  * Parameter `ida` を送信する場合、必ず後述のParameter `lat` を同時に送る必要があります
-  * Parameter `ida` が指定されていて、Parameter `lat` がない場合、必ず HTTP Status `406 Not Acceptable` を返し、広告は配信されません
+  * Parameter ida를 보낼 경우 반드시 아래의 Parameter lat를 동시에 보내야합니다
+  * Parameter ida가 지정되어 있고, Parameter lat가없는 경우 반드시 HTTP Status 406 Not Acceptable를 반환하고 광고는 전달되지 않습니다
 * `lat` : Optional.
-  * 「広告トラッキング制限」が無効な場合: `0`
-  * 「広告トラッキング制限」が有効な場合: `1`
+  * '광고 추적 제한'이 무효 인 경우 : 0
+  * '광고 추적 제한'을 사용하는 경우 : 1
 * `ip` : Optional.
   * Source IP address
-  * APIへのリクエストをサーバから発行する場合など、広告を表示する端末のIPアドレスを設定してください
+  * API에 대한 요청을 서버에서 실행하는 경우 광고를 표시하는 단말의 IP 주소를 필수로 설정하십시오
 * `ua` : Optional.
-  * Headerと異なるUser-Agentを利用する場合に設定してください
+  * Header와 다른 User-Agent를 사용하는 경우에 설정하십시오
 * `ref` : Optional.
-  * Headerと異なるRefererを利用する場合に設定してください
+  * Header와 다른 Referer를 이용하는 경우 설정하십시오
 * `lang` : Optional.
-  * Headerと異なるAccept-Languageを利用する場合に設定してください
+  * Header와 다른 Accept-Language를 사용하는 경우에 설정하십시오
 
-### その他
+### 기타 확인 사항
 
-* ブラウザ/WebView内からのXMLHttpRequestを使ってリクエストを送る場合
-  * `withCredentials` 属性を `true` にてリクエストしてください
-  * `Request Headers` の `Origin` を設定してください
+* 브라우저 / WebView 내에서 XMLHttpRequest를 사용하여 요청을 보내는 경우
+  * `withCredentials` 속성을 `true` 로 요청하십시오
+  * `Request Headers`의 `Origin`을 설정하십시오
 
 
 ## Response
 
-JSON文字列を返却します。文字コードはUTF-8となります。
+JSON 문자열을 반환합니다. 문자 코드는 UTF-8입니다.
 
 ### Response Body
 
-#### 広告案件が存在する場合
+#### 리턴된 광고가 존재하는 경우
 
 * `status` : String
   * `ok`
@@ -70,16 +70,16 @@ JSON文字列を返却します。文字コードはUTF-8となります。
   * `type` : String
     * `native`
   * `imp_url` : String
-    * インプレッション計測用エンドポイント
-  * `image_src` : String
-    * 広告画像URL
-    * 縦横比を保って表示してください
-  * `width` : String
-    * 広告画像の横幅
-  * `height` : String
-    * 広告画像の高さ
-  * `title` : String
-    * 広告タイトル
+    * 임프레션 트래킹 URL
+  * `image_src` : String
+    * 광고 이미지 URL 
+    * 광고 이미지의 비율을 유지하여 노출해야하며, 좌우 비율을 바꿔서는 안됩니다. 
+  * `width` : String
+    * 광고이미지폭
+  * `height` : String
+    * 광고이미지높이
+  * `title` : String
+    * 광고제목
     * 全角1～18文字（半角1～36文字）の文字列
   * `body_text` : String
     * 広告の本文
