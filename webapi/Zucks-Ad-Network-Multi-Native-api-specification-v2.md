@@ -14,10 +14,9 @@
 ### Request Headers
 
 * `User-Agent` : Required.
-  * 광고를 표시하는 단말기의 기본 브라우저와 동등한 ua 를  Header  ua 파라미터를 통해 꼭 보내주세요
+  * 광고를 표시하는 단말기의 기본 브라우저와 동등한 ua 를  Header 또는 ua 파라미터를 통해 보내주세요
   * 뒷 부분에 추가적인 정보가 들어가는 경우에도 (파라미터 ua  를 추가로 보내는 경우에도) 형식에 문제가 없습니다. 
-  * 파라미터에 ua 를 전송하는 경우, 파라미터로 보낸 ua 가 헤더에 우선하여 처리됩니다. 
-  
+  * 파라미터에 ua 를 전송하는 경우, 파라미터로 보낸 ua 설정이 우선됩니다. 
   
 * `Referer` : Optional.
   * Parameter ref가 설정되어있는 경우, Parameter 측의 설정이 우선됩니다
@@ -32,7 +31,7 @@
 * `frameid` : Required.
   * 광고 프레임마다 발행되는 Frame ID 
     * ```HoneyScreen_Female, Male 각각 발급된  frame ID 는 트렐로 카드에 업로드 되어있습니다.``` 
-  * (Zucks Ad Network 관리 화면의 미디어 / 광고 공사 관리 페이지에서 확인하시기 바랍니다)
+  * (Zucks Ad Network 관리 화면의 미디어 / 광고 프레임 관리 페이지에서 확인하시기 바랍니다)
 * `num` : Required.
   * 요청할 광고의 갯수입니다. 1-5사이 숫자를 입력  
     * ```저희는 기존에 진행하던 대로 총 3개의 라인아이템을 만들었으면 합니다 ```
@@ -75,7 +74,7 @@ JSON 문자열을 반환합니다. 문자 코드는 UTF-8입니다.
   * `type` : String
     * `native`
   * `imp_url` : String
-    * 임프레션 트래킹 URL
+    * 임프레션 측정용 end point
   * `image_src` : String
     * 광고 이미지 URL 
     * 광고 이미지의 비율을 유지하여 노출해야함. 
@@ -228,7 +227,7 @@ Zucks Ad Network는 신호를 통해 노출을 계산합니다.
 
 - [ ] 광고가 실제로 잘 표시되었는지
 - [ ] Zucks Ad Network대시보드에서 임프레션이 잘 잡히는지
-- [ ] 랜딩했을때 올바른 페이지로 랜딩 되는지 
+- [ ] 랜딩했을때 기본 브라우저로 랜딩 페이지가 열렸는지  
 - [ ] Zucks Ad Network대시보드에서 클릭이 잘 잡히는지
 
 
@@ -239,7 +238,7 @@ Zucks Ad Network는 신호를 통해 노출을 계산합니다.
 ### no_ad 만 반환되고, 광고 리턴이 없다면 
 
 - [ ] Request Parameter의`frameid` 값이 정확합니까?
-- [ ] Request Header의`User-Agent` 값 또는 Request Parameter의`ua` 값은 광고를 표시하는 단말기의 기본 브라우저에 준한 가치인가?
+- [ ] Request Header의`User-Agent` 값 또는 Request Parameter의 `ua` 값은 광고를 표시하는 단말기의 기본 브라우저에 준하는 값인가?
 
 해당 프레임에 대한 광고 재고가없는 경우도 있습니다. 자세한 내용은 문의 바랍니다
 
