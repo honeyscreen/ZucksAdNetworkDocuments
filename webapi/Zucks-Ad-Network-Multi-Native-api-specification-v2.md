@@ -31,7 +31,7 @@
 * `frameid` : Required.
   * 광고 프레임마다 발행되는 Frame ID 
     * ```HoneyScreen_Female, Male 각각 발급된  frame ID 는 트렐로 카드에 업로드 되어있습니다.``` 
-  * (Zucks Ad Network 관리 화면의 미디어 / 광고 프레임 관리 페이지에서 확인하시기 바랍니다)
+  * (Zucks Ad Network 관리 화면의 미디어 / 광고 프레임 관리 페이지에서 확인하시기 바랍니다)
 * `num` : Required.
   * 요청할 광고의 갯수입니다. 1-5사이 숫자를 입력  
     * ```저희는 기존에 진행하던 대로 총 3개의 라인아이템을 만들었으면 합니다 ```
